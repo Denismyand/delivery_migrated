@@ -1,13 +1,17 @@
 import "../styles/App.css";
 import { ThemeProvider } from "@mui/system";
 import { theme, ButtonFooter } from "../components/MuiCustomized.js";
+import { AppWrapper } from "../context/state.js";
+import { NotificationContainer } from "react-notifications";
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Footer />
-
-      <Component {...pageProps} />
+      <AppWrapper>
+        <Footer />
+        <Component {...pageProps} />
+        <NotificationContainer />
+      </AppWrapper>
     </ThemeProvider>
   );
 }

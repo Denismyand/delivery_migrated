@@ -1,118 +1,120 @@
 import "react-notifications/lib/notifications.css";
-import { dishes } from "../components/Menu.js";
-import Shop from "../components/shop.js";
-import Cart from "./cart.js";
-
-import { useState, useEffect } from "react";
+import { useAppContext } from "../context/state.js";
+import { Stack } from "@mui/material";
 import {
-  NotificationContainer,
-  NotificationManager,
-} from "react-notifications";
-
-function createNotification(type, dish) {
-  switch (type) {
-    case "added":
-      NotificationManager.success(``, `Added ${dish.product} to cart`);
-      break;
-
-    case "removed":
-      NotificationManager.error(
-        "",
-        `Removed ${dish.product} from cart`,
-        5000,
-        () => {
-          alert("callback");
-        }
-      );
-      break;
-
-    case "ordered":
-      NotificationManager.success(``, `Order Placed!`);
-      break;
-
-    case "cleared":
-      NotificationManager.success(``, "Cart cleared");
-  }
-}
+  ButtonRestaurant,
+  ButtonMenu,
+  ButtonRestaurantClearCart,
+} from "../components/MuiCustomized.js";
+import { useState } from "react";
 
 export default function App() {
-  useEffect(() => {
-    setCached(JSON.parse(localStorage.getItem("cart")));
-  }, []);
-  const [cached, setCached] = useState(null);
+  const { menu, cart, setCart, handleAddToCart, createNotification } =
+    useAppContext();
 
-  let menu = dishes;
-  const [cart, setCart] = useState(isCached());
+  let mcMenu = menu.filter((dish) => dish.restaurant === "McDonny");
+  let cfkMenu = menu.filter((dish) => dish.restaurant === "CFK");
+  let johnsMenu = menu.filter((dish) => dish.restaurant === "Uncle John's");
+  let sonimodMenu = menu.filter((dish) => dish.restaurant === "Sonimod Pizza");
+  const [restaurant, setRestaurant] = useState(mcMenu);
 
-  function isCached() {
-    if (cached) {
-      return cached;
-    } else return [];
+  function chooseRestaurant(brand) {
+    setRestaurant(brand);
   }
-
-  function handleAddToCart(dish) {
-    let foundInCart = cart.find((cartItem) => cartItem.id === dish.id);
-    if (foundInCart) {
-      let nextCart = cart.map((food) => {
-        if (food.id === foundInCart.id) {
-          if (foundInCart.cartQuantity >= 13) {
-            return {
-              ...foundInCart,
-              cartQuantity: Number(13),
-            };
-          } else {
-            return {
-              ...foundInCart,
-              cartQuantity: Number(foundInCart.cartQuantity) + 1,
-            };
-          }
-        } else return food;
-      });
-      setCart(nextCart);
-    } else {
-      setCart([...cart, { ...dish, cartQuantity: 1 }]);
-      createNotification("added", dish, foundInCart);
-    }
-  }
-
-  function handleDecreaseQuantity(dish) {
-    if (dish.cartQuantity > 1) {
-      let decreased = cart.map((cartItem) => {
-        if (cartItem.id === dish.id) {
-          return {
-            ...cartItem,
-            cartQuantity: Number(cartItem.cartQuantity) - 1,
-          };
-        } else return cartItem;
-      });
-      setCart(decreased);
-    } else {
-      setCart(cart.filter((item) => item.id !== dish.id));
-      createNotification("removed", dish);
-    }
-  }
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    setCached(JSON.parse(localStorage.getItem("cart")));
-  }, [cart]);
 
   return (
+    <div className="ShopContent">
+      <Restaurants
+        chooseRestaurant={chooseRestaurant}
+        mcMenu={mcMenu}
+        cfkMenu={cfkMenu}
+        johnsMenu={johnsMenu}
+        sonimodMenu={sonimodMenu}
+        cart={cart}
+        setCart={setCart}
+        createNotification={createNotification}
+      />
+      <Menu restaurant={restaurant} handleAddToCart={handleAddToCart} />
+    </div>
+  );
+}
+
+function Restaurants({
+  chooseRestaurant,
+  mcMenu,
+  cfkMenu,
+  johnsMenu,
+  sonimodMenu,
+  cart,
+  setCart,
+  createNotification,
+}) {
+  return (
+    <div className="RestaurantList">
+      <Stack alignItems="center" spacing="40px" directioStackn="column">
+        <h2>Shops:</h2>
+        <ButtonRestaurant
+          disabled={cart.length > 0}
+          onClick={() => chooseRestaurant(mcMenu)}
+        >
+          <b>McDonny</b>
+        </ButtonRestaurant>
+        <ButtonRestaurant
+          disabled={cart.length > 0}
+          onClick={() => chooseRestaurant(cfkMenu)}
+        >
+          <b>CFK</b>
+        </ButtonRestaurant>
+        <ButtonRestaurant
+          disabled={cart.length > 0}
+          onClick={() => chooseRestaurant(johnsMenu)}
+        >
+          <b>Uncle John's</b>
+        </ButtonRestaurant>
+        <ButtonRestaurant
+          disabled={cart.length > 0}
+          onClick={() => chooseRestaurant(sonimodMenu)}
+        >
+          <b>Sonimod Pizza</b>
+        </ButtonRestaurant>
+        <ButtonRestaurantClearCart
+          disabled={cart.length === 0}
+          onClick={() => {
+            setCart([]);
+            createNotification("cleared");
+          }}
+        >
+          Clear cart
+        </ButtonRestaurantClearCart>
+      </Stack>
+    </div>
+  );
+}
+
+function Menu({ restaurant, handleAddToCart }) {
+  return (
     <>
-      <Shop
-        cart={cart}
-        setCart={setCart}
-        menu={menu}
-        handleAddToCart={handleAddToCart}
-        createNotification={createNotification}
-      />
-      <Cart
-        cart={cart}
-        setCart={setCart}
-        handleAddToCart={handleAddToCart}
-        handleDecreaseQuantity={handleDecreaseQuantity}
-        createNotification={createNotification}
-      />
-      <NotificationContainer />
+      <div className="MenuContent">
+        {restaurant.map((dish) => (
+          <div className="Dish" key={dish.id}>
+            <img
+              className="MenuDishImage"
+              src={dish.image}
+              alt={dish.product}
+            />
+            <div>
+              <span className="DishInfo">
+                <b> {dish.product}</b>
+                <br />
+                {dish.cost + "₴"}
+              </span>
+              <ButtonMenu onClick={() => handleAddToCart(dish)}>
+                Add to cart
+              </ButtonMenu>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
