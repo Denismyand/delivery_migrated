@@ -21,7 +21,6 @@ function Footer() {
       <a href="/">
         <ButtonFooter>Shop </ButtonFooter>
       </a>
-
       <div className="VerticalLine"></div>
       <a href="/cart">
         <ButtonFooter>Cart </ButtonFooter>

@@ -3,7 +3,6 @@ import "react-notifications/lib/notifications.css";
 import { dishes } from "../components/Menu.js";
 import { NotificationManager } from "react-notifications";
 
-
 let menu = dishes;
 
 function createNotification(type, dish) {
@@ -34,19 +33,21 @@ function createNotification(type, dish) {
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  useEffect(() => {
-    setCached(JSON.parse(localStorage.getItem("cart")));
-  }, []);
-  const [cached, setCached] = useState(null);
+  const [cached, setCached] = useState(isParsed());
+  function isParsed() {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("cart"));
+    } else return null;
+  }
 
   const [cart, setCart] = useState(isCached());
+
 
   function isCached() {
     if (cached) {
       return cached;
     } else return [];
   }
-
   function handleAddToCart(dish) {
     let foundInCart = cart.find((cartItem) => cartItem.id === dish.id);
     if (foundInCart) {
@@ -88,7 +89,6 @@ export function AppWrapper({ children }) {
       createNotification("removed", dish);
     }
   }
-
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     setCached(JSON.parse(localStorage.getItem("cart")));

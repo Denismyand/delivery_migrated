@@ -38,7 +38,7 @@ const options = {
 
 export default function Map({ setCustAddress, custAddress, cart }) {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GMAPS_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GMAPS_API_KEY,
     libraries,
   });
 
@@ -48,7 +48,6 @@ export default function Map({ setCustAddress, custAddress, cart }) {
   const [duration, setDuration] = useState("");
 
   async function getDeliveryRate() {
-    // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
     const results = await directionsService.route({
       origin: closestRestaurant,
@@ -68,7 +67,7 @@ export default function Map({ setCustAddress, custAddress, cart }) {
       restaurantLocations.map((restaurant) => {
         if (restaurant.name === cart[0].restaurant) {
           fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${restaurant.lat},${restaurant.lng}&key=${process.env.REACT_APP_GMAPS_API_KEY}`
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${restaurant.lat},${restaurant.lng}&key=${process.env.NEXT_PUBLIC_GMAPS_API_KEY}`
           )
             .then((response) => response.json())
             .then((results) =>
@@ -81,7 +80,7 @@ export default function Map({ setCustAddress, custAddress, cart }) {
 
   function handleGetAddress(lat, lng) {
     fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GMAPS_API_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GMAPS_API_KEY}`
     )
       .then((response) => response.json())
       .then((results) => setCustAddress(results.results[0].formatted_address));

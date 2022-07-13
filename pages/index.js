@@ -6,12 +6,11 @@ import {
   ButtonMenu,
   ButtonRestaurantClearCart,
 } from "../components/MuiCustomized.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const { menu, cart, setCart, handleAddToCart, createNotification } =
     useAppContext();
-
   let mcMenu = menu.filter((dish) => dish.restaurant === "McDonny");
   let cfkMenu = menu.filter((dish) => dish.restaurant === "CFK");
   let johnsMenu = menu.filter((dish) => dish.restaurant === "Uncle John's");
@@ -21,6 +20,15 @@ export default function App() {
   function chooseRestaurant(brand) {
     setRestaurant(brand);
   }
+  function ifCartIsNotEmpty() {
+    if (cart.length < 1) {
+      return false;
+    } else return true;
+  }
+  const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsNotEmpty);
+  useEffect(() => {
+    setCartIsEmpty(!ifCartIsNotEmpty());
+  }, [cart]);
 
   return (
     <div className="ShopContent">
@@ -33,6 +41,7 @@ export default function App() {
         cart={cart}
         setCart={setCart}
         createNotification={createNotification}
+        cartIsEmpty={cartIsEmpty}
       />
       <Menu restaurant={restaurant} handleAddToCart={handleAddToCart} />
     </div>
@@ -45,7 +54,7 @@ function Restaurants({
   cfkMenu,
   johnsMenu,
   sonimodMenu,
-  cart,
+  cartIsEmpty,
   setCart,
   createNotification,
 }) {
@@ -54,31 +63,31 @@ function Restaurants({
       <Stack alignItems="center" spacing="40px" directioStackn="column">
         <h2>Shops:</h2>
         <ButtonRestaurant
-          disabled={cart.length > 0}
+          disabled={!cartIsEmpty}
           onClick={() => chooseRestaurant(mcMenu)}
         >
           <b>McDonny</b>
         </ButtonRestaurant>
         <ButtonRestaurant
-          disabled={cart.length > 0}
+          disabled={!cartIsEmpty}
           onClick={() => chooseRestaurant(cfkMenu)}
         >
           <b>CFK</b>
         </ButtonRestaurant>
         <ButtonRestaurant
-          disabled={cart.length > 0}
+          disabled={!cartIsEmpty}
           onClick={() => chooseRestaurant(johnsMenu)}
         >
           <b>Uncle John's</b>
         </ButtonRestaurant>
         <ButtonRestaurant
-          disabled={cart.length > 0}
+          disabled={!cartIsEmpty}
           onClick={() => chooseRestaurant(sonimodMenu)}
         >
           <b>Sonimod Pizza</b>
         </ButtonRestaurant>
         <ButtonRestaurantClearCart
-          disabled={cart.length === 0}
+          disabled={cartIsEmpty}
           onClick={() => {
             setCart([]);
             createNotification("cleared");

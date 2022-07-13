@@ -12,14 +12,16 @@ import {
   ButtonCartClearCart,
   ButtonDeleteFromCart,
 } from "../components/MuiCustomized.js";
+import { useAppContext } from "../context/state.js";
 
-export default function Cart({
-  cart,
-  setCart,
-  handleAddToCart,
-  handleDecreaseQuantity,
-  createNotification,
-}) {
+export default function Cart() {
+  const {
+    cart,
+    setCart,
+    handleAddToCart,
+    handleDecreaseQuantity,
+    createNotification,
+  } = useAppContext();
   const [custName, setCustName] = useState("");
   const [custEmail, setCustEmail] = useState("");
   const [custPhone, setCustPhone] = useState("");
@@ -37,6 +39,16 @@ export default function Cart({
       return cachedOrders;
     } else return [];
   }
+  function ifCartIsEmpty() {
+    if (cart.length < 1) {
+      return true;
+    } else return false;
+  }
+  const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsEmpty);
+  useEffect(() => {
+    setCartIsEmpty(ifCartIsEmpty());
+  }, [cart]);
+
   let total = 0;
 
   function getOrder() {
@@ -87,8 +99,8 @@ export default function Cart({
     });
     setCart(changed);
   }
-
   useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("orders", JSON.stringify(orders));
     setCachedOrders(JSON.parse(localStorage.getItem("orders")));
   }, [orders]);
@@ -139,20 +151,20 @@ export default function Cart({
               createNotification={createNotification}
             />
           </div>
+
           <div className="CartTotalSection">
-            {cart.length > 0 ? (
-              <div className="Captcha">
-                <ReCAPTCHA
-                  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                  onChange={handleCaptchaVerify}
-                />
-              </div>
-            ) : null}
+            {cartIsEmpty ? null : (
+              <ReCAPTCHA
+                className="Captcha"
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                onChange={handleCaptchaVerify}
+              />
+            )}
             <div className="CartTotal">
               <p>Total price: {cartTotal()}</p>
             </div>
             <ButtonCartClearCart
-              disabled={cart.length < 1}
+              disabled={cartIsEmpty}
               onClick={() => {
                 setCart([]);
                 createNotification("cleared");
@@ -162,7 +174,7 @@ export default function Cart({
             </ButtonCartClearCart>
             <ButtonSubmitOrder
               disabled={
-                cart.length < 1 ||
+                cartIsEmpty ||
                 custName === "" ||
                 custPhone === "" ||
                 custEmail === "" ||
