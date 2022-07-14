@@ -8,15 +8,28 @@ import {
 } from "../components/MuiCustomized.js";
 import { useState, useEffect } from "react";
 
-export default function App() {
-  const { menu, cart, setCart, handleAddToCart, createNotification } =
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+  const dishes = await prisma.dishes.findMany();
+  console.log(dishes);
+  return {
+    props: {
+      menu: dishes,
+    },
+  };
+}
+
+export default function App({ menu }) {
+  const { cart, setCart, handleAddToCart, createNotification } =
     useAppContext();
   let mcMenu = menu.filter((dish) => dish.restaurant === "McDonny");
   let cfkMenu = menu.filter((dish) => dish.restaurant === "CFK");
   let johnsMenu = menu.filter((dish) => dish.restaurant === "Uncle John's");
   let sonimodMenu = menu.filter((dish) => dish.restaurant === "Sonimod Pizza");
   const [restaurant, setRestaurant] = useState(mcMenu);
-
+  debugger;
   function chooseRestaurant(brand) {
     setRestaurant(brand);
   }

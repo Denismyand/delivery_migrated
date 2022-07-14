@@ -42,7 +42,6 @@ export function AppWrapper({ children }) {
 
   const [cart, setCart] = useState(isCached());
 
-
   function isCached() {
     if (cached) {
       return cached;

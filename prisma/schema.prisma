@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model dishes{
+  id String @id
+  restarant String
+  product String
+  image String
+  cost Int
+}
+
+model restaurants{
+  id String @id
+  name String
+  lat Decimal
+  lng Decimal
+}
+
+model orders{
+  id String @id
+  customer_id Int 
+  customer_name String
+  cutomer_email String
+  customer_phone String
+  customer_address String
+  order_items String
+}
+
+model users{
+  id Int @id @default(autoincrement())
+  login String
+  password String
+  email String
+  phone String
+}

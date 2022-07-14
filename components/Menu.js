@@ -5,7 +5,6 @@ export const dishes = [
     product: "Small tasty",
     image: "/pics/McDonny/tasty.png",
     cost: 123,
-    cartQuantity: 0,
   },
   {
     id: 2,
@@ -13,7 +12,6 @@ export const dishes = [
     product: "Cheeseburger",
     image: "/pics/McDonny/cheeseburger.jpg",
     cost: 126,
-    cartQuantity: 0,
   },
   {
     id: 3,
@@ -21,7 +19,6 @@ export const dishes = [
     product: "SadMeal",
     image: "/pics/McDonny/sadmeal.jpg",
     cost: 132,
-    cartQuantity: 0,
   },
   {
     id: 4,
@@ -29,7 +26,6 @@ export const dishes = [
     product: "McFurry",
     image: "/pics/McDonny/furry.png",
     cost: 210,
-    cartQuantity: 0,
   },
   {
     id: 5,
@@ -37,7 +33,6 @@ export const dishes = [
     product: "McMafia",
     image: "/pics/McDonny/mafia.jpg",
     cost: 155,
-    cartQuantity: 0,
   },
   {
     id: 6,
@@ -45,7 +40,6 @@ export const dishes = [
     product: "Wings",
     image: "/pics/CFK/Wings.jpg",
     cost: 213,
-    cartQuantity: 0,
   },
   {
     id: 7,
@@ -53,7 +47,6 @@ export const dishes = [
     product: "Strips",
     image: "/pics/CFK/strips.png",
     cost: 203,
-    cartQuantity: 0,
   },
   {
     id: 8,
@@ -61,7 +54,6 @@ export const dishes = [
     product: "Bucket",
     image: "/pics/CFK/bucket.png",
     cost: 534,
-    cartQuantity: 0,
   },
   {
     id: 9,
@@ -69,7 +61,6 @@ export const dishes = [
     product: "Legs",
     image: "/pics/CFK/legs.png",
     cost: 128,
-    cartQuantity: 0,
   },
   {
     id: 10,
@@ -77,7 +68,6 @@ export const dishes = [
     product: "Chickenburger",
     image: "/pics/CFK/chicken.png",
     cost: 215,
-    cartQuantity: 0,
   },
   {
     id: 11,
@@ -85,7 +75,6 @@ export const dishes = [
     product: "Mozarella Sticks",
     image: "/pics/Johns/sticks.png",
     cost: 105,
-    cartQuantity: 0,
   },
   {
     id: 12,
@@ -93,7 +82,6 @@ export const dishes = [
     product: "Uncledias",
     image: "/pics/Johns/dias.jpg",
     cost: 319,
-    cartQuantity: 0,
   },
   {
     id: 13,
@@ -101,7 +89,6 @@ export const dishes = [
     product: "Honey Mustard",
     image: "/pics/Johns/mustard.jpg",
     cost: 30,
-    cartQuantity: 0,
   },
   {
     id: 14,
@@ -109,7 +96,6 @@ export const dishes = [
     product: "BBQ Chicken Pizza",
     image: "/pics/Johns/bbq.png",
     cost: 239,
-    cartQuantity: 0,
   },
   {
     id: 15,
@@ -117,7 +103,6 @@ export const dishes = [
     product: "Margherita pizza",
     image: "/pics/Johns/margherita.png",
     cost: 192,
-    cartQuantity: 0,
   },
   {
     id: 16,
@@ -125,7 +110,6 @@ export const dishes = [
     product: "Carbonara",
     image: "/pics/Sonimod/carbonara.jpg",
     cost: 329,
-    cartQuantity: 0,
   },
   {
     id: 17,
@@ -133,7 +117,6 @@ export const dishes = [
     product: "Royal Cheeseburger",
     image: "/pics/Sonimod/royal.jpg",
     cost: 239,
-    cartQuantity: 0,
   },
   {
     id: 18,
@@ -141,7 +124,6 @@ export const dishes = [
     product: "Toscana",
     image: "/pics/Sonimod/toscana.png",
     cost: 439,
-    cartQuantity: 0,
   },
   {
     id: 19,
@@ -149,7 +131,6 @@ export const dishes = [
     product: "5 Cheese",
     image: "/pics/Sonimod/cheese.png",
     cost: 593,
-    cartQuantity: 0,
   },
   {
     id: 20,
@@ -157,6 +138,5 @@ export const dishes = [
     product: "Munich DeLUX",
     image: "/pics/Sonimod/munich.jpg",
     cost: 293,
-    cartQuantity: 0,
   },
 ];
