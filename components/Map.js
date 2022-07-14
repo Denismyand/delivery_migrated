@@ -7,7 +7,6 @@ import {
 } from "@react-google-maps/api";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { mapStyles } from "./mapstyles.js";
-import { restaurantLocations } from "./restaurants";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -20,6 +19,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+
 const locator = "/pics/location.svg";
 
 const mapContainerStyle = {
@@ -36,7 +36,12 @@ const options = {
   zoomControl: true,
 };
 
-export default function Map({ setCustAddress, custAddress, cart }) {
+export default function Map({
+  setCustAddress,
+  custAddress,
+  cart,
+  restaurantLocations,
+}) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GMAPS_API_KEY,
     libraries,

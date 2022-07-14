@@ -7,13 +7,11 @@ import {
   ButtonRestaurantClearCart,
 } from "../components/MuiCustomized.js";
 import { useState, useEffect } from "react";
-
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
   const dishes = await prisma.dishes.findMany();
-  console.log(dishes);
   return {
     props: {
       menu: dishes,
@@ -29,7 +27,6 @@ export default function App({ menu }) {
   let johnsMenu = menu.filter((dish) => dish.restaurant === "Uncle John's");
   let sonimodMenu = menu.filter((dish) => dish.restaurant === "Sonimod Pizza");
   const [restaurant, setRestaurant] = useState(mcMenu);
-  debugger;
   function chooseRestaurant(brand) {
     setRestaurant(brand);
   }

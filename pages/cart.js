@@ -13,8 +13,26 @@ import {
   ButtonDeleteFromCart,
 } from "../components/MuiCustomized.js";
 import { useAppContext } from "../context/state.js";
+import { PrismaClient } from "@prisma/client";
 
-export default function Cart() {
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+  let restaurants = await prisma.restaurants.findMany();
+  return {
+    props: {
+      restaurantLocations: restaurants.map((rest) => {
+        return {
+          ...rest,
+          lat: Number(rest.lat),
+          lng: Number(rest.lng),
+        };
+      }),
+    },
+  };
+}
+
+export default function Cart({ restaurantLocations }) {
   const {
     cart,
     setCart,
@@ -69,8 +87,7 @@ export default function Cart() {
     setCustPhone("");
     setCustAddress("");
   }
-  function handleCaptchaVerify(value) {
-    console.log("Captcha value:", value);
+  function handleCaptchaVerify() {
     setIsVerified(!isVerified);
   }
 
@@ -118,6 +135,7 @@ export default function Cart() {
             setCustAddress={setCustAddress}
             custAddress={custAddress}
             cart={cart}
+            restaurantLocations={restaurantLocations}
           />
           <InputPersonalInfo
             toInput="name"

@@ -1,9 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import "react-notifications/lib/notifications.css";
-import { dishes } from "../components/Menu.js";
 import { NotificationManager } from "react-notifications";
-
-let menu = dishes;
+import { v4 as uuidv4 } from "uuid";
 
 function createNotification(type, dish) {
   switch (type) {
@@ -92,8 +90,10 @@ export function AppWrapper({ children }) {
     localStorage.setItem("cart", JSON.stringify(cart));
     setCached(JSON.parse(localStorage.getItem("cart")));
   }, [cart]);
+  useEffect(() => {
+    localStorage.setItem("UserToken", JSON.stringify(uuidv4()));
+  }, []);
   let sharedState = {
-    menu,
     cart,
     setCart,
     handleAddToCart,
