@@ -33,6 +33,7 @@ model orders {
   customer_address String
   order_items      String
   order_time       String
+  order_total      Int
 }
 
 model users {

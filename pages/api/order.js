@@ -11,6 +11,7 @@ function getOrderData({
   customerId,
   orderItems,
   orderTime,
+  orderTotal
 }) {
   return prisma.orders.create({
     data: {
@@ -22,15 +23,13 @@ function getOrderData({
       customer_address: custAddress,
       order_items: orderItems,
       order_time: orderTime,
+      order_total: orderTotal,
     },
   });
 }
 
 export default async (req, res) => {
-  //   if (req.method === "POST") {
   const { body } = req;
   const orderdata = await getOrderData(JSON.parse(body));
   res.status(200).json({ orderdata });
-  //   } else {
-  //   }
 };

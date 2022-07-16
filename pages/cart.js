@@ -81,6 +81,7 @@ export default function Cart({ restaurantLocations }) {
         customerId,
         orderItems,
         orderTime,
+        orderTotal: total,
       }),
     });
     setCustName("");
