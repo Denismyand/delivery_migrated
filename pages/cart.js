@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { Stack } from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
+
 import Map from "../components/Map.js";
 import ReCAPTCHA from "react-google-recaptcha";
 import {
@@ -40,23 +41,16 @@ export default function Cart({ restaurantLocations }) {
     handleDecreaseQuantity,
     createNotification,
   } = useAppContext();
+
   const [custName, setCustName] = useState("");
   const [custEmail, setCustEmail] = useState("");
   const [custPhone, setCustPhone] = useState("");
   const [custAddress, setCustAddress] = useState("");
   const [isVerified, setIsVerified] = useState(false);
-  const [cachedOrders, setCachedOrders] = useState(null);
-
+  const [customerId, setCustomerId] = useState("");
   useEffect(() => {
-    setCachedOrders(JSON.parse(localStorage.getItem("orders")));
+    setCustomerId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
-  const [orders, setOrders] = useState(isCached());
-
-  function isCached() {
-    if (cachedOrders) {
-      return cachedOrders;
-    } else return [];
-  }
   function ifCartIsEmpty() {
     if (cart.length < 1) {
       return true;
@@ -69,19 +63,26 @@ export default function Cart({ restaurantLocations }) {
 
   let total = 0;
 
-  function getOrder() {
-    setOrders([
-      ...orders,
-      {
-        id: uuidv4(),
-        customer_name: custName,
-        customer_email: custEmail,
-        customer_phone: custPhone,
-        customer_address: custAddress,
-        ordered_items: cart,
-        order_total: cartTotal(),
-      },
-    ]);
+  async function getOrder() {
+    let orderTime = new Date();
+    let orderItems = JSON.stringify(
+      cart.map((item) => {
+        return { id: item.id, quantity: item.cartQuantity };
+      })
+    );
+    await fetch("api/order", {
+      method: "POST",
+      body: JSON.stringify({
+        orderId: uuidv4(),
+        custName,
+        custEmail,
+        custPhone,
+        custAddress,
+        customerId,
+        orderItems,
+        orderTime,
+      }),
+    });
     setCustName("");
     setCustEmail("");
     setCustPhone("");
@@ -118,9 +119,7 @@ export default function Cart({ restaurantLocations }) {
   }
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    localStorage.setItem("orders", JSON.stringify(orders));
-    setCachedOrders(JSON.parse(localStorage.getItem("orders")));
-  }, [orders]);
+  }, [cart]);
 
   return (
     <>
@@ -184,6 +183,7 @@ export default function Cart({ restaurantLocations }) {
             <ButtonCartClearCart
               disabled={cartIsEmpty}
               onClick={() => {
+                getOrder();
                 setCart([]);
                 createNotification("cleared");
               }}

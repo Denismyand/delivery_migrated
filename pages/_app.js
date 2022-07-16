@@ -19,11 +19,15 @@ function Footer() {
   return (
     <div className="Footer">
       <a href="/">
-        <ButtonFooter>Shop </ButtonFooter>
+        <ButtonFooter>Shop</ButtonFooter>
       </a>
       <div className="VerticalLine"></div>
       <a href="/cart">
-        <ButtonFooter>Cart </ButtonFooter>
+        <ButtonFooter>Cart</ButtonFooter>
+      </a>
+      <div className="VerticalLine"></div>
+      <a href="/orders">
+        <ButtonFooter>Orders</ButtonFooter>
       </a>
     </div>
   );

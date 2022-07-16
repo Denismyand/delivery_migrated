@@ -91,7 +91,9 @@ export function AppWrapper({ children }) {
     setCached(JSON.parse(localStorage.getItem("cart")));
   }, [cart]);
   useEffect(() => {
-    localStorage.setItem("UserToken", JSON.stringify(uuidv4()));
+    if (!localStorage.getItem("UserToken")) {
+      localStorage.setItem("UserToken", JSON.stringify(uuidv4()));
+    }
   }, []);
   let sharedState = {
     cart,

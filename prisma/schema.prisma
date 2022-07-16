@@ -26,12 +26,13 @@ model restaurants {
 
 model orders {
   id               String @id
-  customer_id      Int
+  customer_id      String
   customer_name    String
-  cutomer_email    String
+  customer_email   String
   customer_phone   String
   customer_address String
   order_items      String
+  order_time       String
 }
 
 model users {
