@@ -56,7 +56,7 @@ export function ButtonFooter({ children }) {
         width: "200px",
         fontSize: "20px",
         textTransform: "none",
-        textDecoration:"none",
+        textDecoration: "none",
         boxShadow: "0 0 5px",
       }}
       variant="text"
@@ -288,5 +288,20 @@ export function InputCartQuantity({ value, onChange }) {
         },
       }}
     />
+  );
+}
+export function InputSearch({ toInput, value, onChange }) {
+  return (
+    <TextField
+      sx={{
+        width: "80%",
+      }}
+      variant="outlined"
+      color="inputs"
+      label={"Find by " + toInput + ":"}
+      placeholder={`Enter order ${toInput}`}
+      value={value}
+      onChange={onChange}
+    ></TextField>
   );
 }

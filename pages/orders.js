@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { PrismaClient } from "@prisma/client";
+import { Stack } from "@mui/material";
+import { InputSearch } from "../components/MuiCustomized.js";
+
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
@@ -16,6 +19,10 @@ export async function getServerSideProps() {
 
 export default function Orders({ menu, orderList }) {
   const [userId, setUserId] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [orderId, setOrderId] = useState("");
+
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
@@ -26,7 +33,16 @@ export default function Orders({ menu, orderList }) {
 
   return (
     <div className="HistoryContent">
-      <div className="SearchSection"></div>
+      <Stack
+        className="SearchSection"
+        alignItems="center"
+        spacing="30px"
+        direction="column"
+      >
+        <InputSearch toInput="email" value={email} />
+        <InputSearch toInput="phone" value={phone} />
+        <InputSearch toInput="order Id" value={orderId} />
+      </Stack>
       <History orderList={orderList} menu={menu} />
     </div>
   );
@@ -37,7 +53,7 @@ function History({ orderList, menu }) {
     <div className="HistoryList">
       {orderList.map((order) => {
         return (
-          <div className="HistoryOrder">
+          <div className="HistoryOrder" key={order.id}>
             <p>
               Order id: <b>{order.id}</b>
             </p>

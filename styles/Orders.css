@@ -6,13 +6,24 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  height: 900px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  height: 850px;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 10px;
 }
 .SearchSection {
   width: 1520px;
-  height: 350px;
+  height: 330px;
+  padding-top: 30px;
   margin-top: 30px;
-  border: 1px solid #000000;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
 }
 .HistoryList {
   padding: 50px;
@@ -25,17 +36,21 @@ img {
   width: 1520px;
   height: 470px;
   overflow: auto;
-  border: 1px solid #000000;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
 }
 .HistoryOrder {
   padding: 20px;
-  width: 1400px;
+  width: 1380px;
   display: flex;
   flex-direction: column;
   align-items: left;
   gap: 20px;
   font-size: 20px;
-  border: 1px solid #000000;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
   position: relative;
 }
 
@@ -49,13 +64,17 @@ img {
   width: 1340px;
   gap: 30px;
   align-items: center;
-  border: 1px solid #000000;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
 }
 .HistoryDish {
   display: flex;
   padding: 20px;
   width: 500px;
-  border: 1px solid #000000;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
 }
 .HistoryDishInfo {
   padding-left: 50px;

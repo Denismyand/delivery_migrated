@@ -129,7 +129,7 @@ export default function Cart({ restaurantLocations }) {
           className="PersonalInfo"
           alignItems="center"
           spacing="50px"
-          directioStackn="column"
+          direction="column"
         >
           <Map
             setCustAddress={setCustAddress}
