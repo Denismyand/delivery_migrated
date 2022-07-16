@@ -1,4 +1,8 @@
 import "../styles/App.css";
+import "../styles/Shop.css";
+import "../styles/Cart.css";
+import "../styles/Orders.css";
+
 import { ThemeProvider } from "@mui/system";
 import { theme, ButtonFooter } from "../components/MuiCustomized.js";
 import { AppWrapper } from "../context/state.js";

@@ -1,0 +1,60 @@
+.ShopContent {
+  display: flex;
+  flex-wrap: wrap;
+  height: 850px;
+  gap: 2.5%;
+  justify-content: center;
+}
+.RestaurantList {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 40px;
+  width: 500px;
+  height: 850px;
+  border: 2px solid #455a64;
+  border-radius: 5px;
+  box-shadow: 0 0 10px;
+}
+
+.MenuContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  justify-content: center;
+  overflow: auto;
+  width: 1250px;
+  height: 850px;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 10px;
+}
+.Dish {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  width: 480px;
+  height: 600px;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
+}
+
+.MenuDishImage {
+  height: 480px;
+  width: 480px;
+  border: 0;
+  border-bottom: 2px solid #455a64;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.DishInfo {
+  position: absolute;
+  bottom: 55px;
+  padding-left: 7px;
+  font-size: 25px;
+}
