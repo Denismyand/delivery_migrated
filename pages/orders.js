@@ -26,10 +26,11 @@ export default function Orders({ menu, orderList }) {
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
-  orderList.filter((order) => order.customer_id === userId);
-  orderList = orderList.map((order) => {
-    return { ...order, order_items: JSON.parse(order.order_items) };
-  });
+  orderList = orderList
+    .filter((order) => order.customer_id === userId)
+    .map((order) => {
+      return { ...order, order_items: JSON.parse(order.order_items) };
+    });
 
   return (
     <div className="HistoryContent">
