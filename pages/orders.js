@@ -40,20 +40,44 @@ export default function Orders({ menu, orderList }) {
         spacing="30px"
         direction="column"
       >
-        <InputSearch toInput="email" value={email} />
-        <InputSearch toInput="phone" value={phone} />
-        <InputSearch toInput="order Id" value={orderId} />
+        <InputSearch
+          toInput="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+        />
+        <InputSearch
+          toInput="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          type="number"
+        />
+        <InputSearch
+          toInput="order Id"
+          value={orderId}
+          onChange={(e) => setOrderId(e.target.value)}
+        />
       </Stack>
-      <History orderList={orderList} menu={menu} />
+      <History
+        orderList={orderList}
+        menu={menu}
+        email={email}
+        phone={phone}
+        orderId={orderId}
+      />
     </div>
   );
 }
 
-function History({ orderList, menu }) {
+function History({ orderList, menu, email, phone, orderId }) {
   return (
     <div className="HistoryList">
       {orderList.map((order) => {
-        return (
+        return order.customer_email
+          .toLowerCase()
+          .includes(email.toLowerCase()) &&
+          order.customer_phone.toLowerCase().includes(phone.toLowerCase()) &&
+          order.id.toLowerCase().includes(orderId.toLowerCase()) ? (
           <div className="HistoryOrder" key={order.id}>
             <p>
               Order id: <b>{order.id}</b>
@@ -74,6 +98,9 @@ function History({ orderList, menu }) {
             </p>
             <p>
               Order phone number: <b>{order.customer_phone}</b>
+            </p>
+            <p>
+              Order email: <b>{order.customer_email}</b>
             </p>
             <p>
               Order address: <b>{order.customer_address}</b>
@@ -114,7 +141,7 @@ function History({ orderList, menu }) {
               </div>
             </div>
           </div>
-        );
+        ) : null;
       })}
     </div>
   );

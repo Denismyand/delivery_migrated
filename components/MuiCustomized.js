@@ -244,7 +244,7 @@ export function ButtonDeleteFromCart({ onClick }) {
   );
 }
 
-export function InputPersonalInfo({ toInput, value, onChange, disabled }) {
+export function InputPersonalInfo({ toInput, value, onChange, disabled, type }) {
   return (
     <TextField
       sx={{
@@ -257,6 +257,7 @@ export function InputPersonalInfo({ toInput, value, onChange, disabled }) {
       value={value}
       onChange={onChange}
       disabled={disabled}
+      type={type}
     ></TextField>
   );
 }
@@ -290,7 +291,7 @@ export function InputCartQuantity({ value, onChange }) {
     />
   );
 }
-export function InputSearch({ toInput, value, onChange }) {
+export function InputSearch({ toInput, value, onChange, type }) {
   return (
     <TextField
       sx={{
@@ -302,6 +303,7 @@ export function InputSearch({ toInput, value, onChange }) {
       placeholder={`Enter order ${toInput}`}
       value={value}
       onChange={onChange}
+      type = {type}
     ></TextField>
   );
 }

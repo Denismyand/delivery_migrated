@@ -146,11 +146,13 @@ export default function Cart({ restaurantLocations }) {
             toInput="email"
             value={custEmail}
             onChange={(e) => setCustEmail(e.target.value)}
+            type="email"
           />
           <InputPersonalInfo
             toInput="phone"
             value={custPhone}
             onChange={(e) => setCustPhone(e.target.value)}
+            type="number"
           />
           <InputPersonalInfo
             toInput="address"
