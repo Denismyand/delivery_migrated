@@ -26,6 +26,10 @@ function createNotification(type, dish) {
 
     case "cleared":
       NotificationManager.success(``, "Cart cleared");
+      break;
+
+    case "copied":
+      NotificationManager.info(``, "Copied to clipboard", 1000);
   }
 }
 const AppContext = createContext();

@@ -1,0 +1,46 @@
+textarea {
+  resize: none;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 5px;
+  width: 150px;
+  height: 50px;
+  line-height: 45px;
+  font-size: 20px;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
+}
+
+.CouponsContent {
+  width: 98%;
+  height: 900px;
+  margin: 1%;
+  padding: 1%;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 10px;
+  text-align: center;
+}
+.CouponsList {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+}
+.Coupon {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 450px;
+  height: 350px;
+  border: 2px solid #455a64;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
+}
+.CouponImg {
+  border: 0;
+  border-bottom: 1px solid #000000;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

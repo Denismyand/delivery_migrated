@@ -310,6 +310,44 @@ export function InputSearch({ toInput, value, onChange, type }) {
       value={value}
       onChange={onChange}
       type={type}
-    ></TextField>
+    />
+  );
+}
+
+export function CopyButton({ onClick, children }) {
+  return (
+    <Button
+      sx={{
+        width: "200px",
+        height: "50px",
+        position: "absolute",
+        bottom: "5px",
+        right: "5px",
+      }}
+      variant="outlined"
+      color="primary"
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  );
+}
+
+export function PromoInput({ onChange, value }) {
+  return (
+    <TextField
+      sx={{
+        width: "200px",
+        position: "absolute",
+        left: "10px",
+        top: "10px",
+      }}
+      variant="outlined"
+      color="inputs"
+      label={"Enter your promocode:"}
+      placeholder={`Input promocode`}
+      value={value}
+      onChange={onChange}
+    />
   );
 }

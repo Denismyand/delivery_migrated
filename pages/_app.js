@@ -2,6 +2,8 @@ import "../styles/App.css";
 import "../styles/Shop.css";
 import "../styles/Cart.css";
 import "../styles/Orders.css";
+import "../styles/Coupons.css";
+
 
 import { AppWrapper } from "../context/state.js";
 import { ThemeProvider } from "@mui/system";
@@ -28,7 +30,6 @@ function Footer() {
           <ButtonFooter>Shop</ButtonFooter>
         </a>
       </Link>
-
       <div className="VerticalLine" />
       <Link href="/cart">
         <a>
@@ -39,6 +40,12 @@ function Footer() {
       <Link href="/orders">
         <a>
           <ButtonFooter>Orders</ButtonFooter>
+        </a>
+      </Link>
+      <div className="VerticalLine" />
+      <Link href="/coupons">
+        <a>
+          <ButtonFooter>Coupons</ButtonFooter>
         </a>
       </Link>
     </div>

@@ -9,6 +9,7 @@ import {
   InputCartQuantity,
   ButtonCartClearCart,
   ButtonDeleteFromCart,
+  PromoInput,
 } from "../components/MuiCustomized.js";
 import { Stack } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
@@ -47,13 +48,13 @@ export default function Cart({ restaurantLocations }) {
   const [custAddress, setCustAddress] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [customerId, setCustomerId] = useState("");
+  const [promo, setPromo] = useState("");
 
   useEffect(() => {
     setCustomerId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
 
   const [cartIsEmpty, setCartIsEmpty] = useState(true);
-  
 
   useEffect(() => {
     setCartIsEmpty(cart.length < 1);
@@ -95,7 +96,11 @@ export default function Cart({ restaurantLocations }) {
   function cartTotal() {
     if (cart) {
       cart.forEach((dish) => {
-        if (dish.cartQuantity) {
+        if (promo === "20percent") {
+          total += dish.cost * dish.cartQuantity * 0.8;
+        } else if (promo === "30percent") {
+          total += dish.cost * dish.cartQuantity * 0.7;
+        } else {
           total += dish.cost * dish.cartQuantity;
         }
       });
@@ -179,6 +184,10 @@ export default function Cart({ restaurantLocations }) {
                 onChange={handleCaptchaVerify}
               />
             ) : null}
+            <PromoInput
+              value={promo}
+              onChange={(e) => setPromo(e.target.value)}
+            />
             <div className="CartTotal">
               <p>Total price: {cartTotal()}</p>
             </div>
