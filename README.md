@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+User guide:
 
-## Getting Started
+Main page (Shop):
+First, change the restaurant by clicking the buttons of the sidebar on the left part of the screen.
+Then, choose which items to order by clicking "add to cart" buttons below them. When an item is added to the cart for the first time, a notification about it pops out in the top right corner. Future clicks will not cause popouts, however there will be added more items of the same kind.
+Notice, that when any item is added to the cart, restaurant buttons get disabled since the order can be placed only at one restaurant at once.
+To clear the cart, use the "Clear cart" button. Using it will cause a notification that the cart is now clear, the button will become disabled, however restaurant buttons will become unlocked again.
 
-First, run the development server:
+Cart page:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This page helps user to place an order. To the right, if the cart is not empty, there are items currently in the cart of user. User can change quantities of items in the order by either writing into an input field, or regulating quantity by arrow keys to the right from the input (Allowed quantities: 1-13 for the same item). Also, user can remove an item from cart by pressing the red bin icon. For each cart item there is a sum of all its units and total order sum below the cart.
+On the left side of the screen there are input fields and a map to get user data, that is necessary to place an order. All the data fields are formatted for the type of data it requires. The address can be chosen by clicking on the map, manually typing it into a search bar on the top side of the map or by being located using geolocation after clicking the button in the top right corner of the map (browser location access required). After the address is chosen there will be built a path from the restaurant where the order will be delivered from to the closest available location. Also in the bottom of the map will appear delivery path and estimate delivery time. Next, user can enter a promo code, then pass the captcha and place an order. When order is placed, notification apears. Also, there is a "Clear cart" button that does exactly the same as the button with the same name on the previous page.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Coupons page:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+This page contains coupons with promocodes that can be used when placing order.
+Every coupon has a picture, a promo code and a button "copy code" which copies the code to a clipboard. When the button is pressed, the notification appears and the code copies.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Orders page:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This page contains the user's previous orders. There are also 3 input fields that allow user to search for the order with some phone, email and order id.

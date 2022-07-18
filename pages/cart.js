@@ -146,6 +146,7 @@ export default function Cart({ restaurantLocations }) {
             toInput="name"
             value={custName}
             onChange={(e) => setCustName(e.target.value)}
+            type="text"
           />
           <InputPersonalInfo
             toInput="email"
