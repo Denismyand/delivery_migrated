@@ -61,10 +61,8 @@ export default function Map({
       travelMode: google.maps.TravelMode.DRIVING,
     });
     setDirectionsResponse(results);
-    if (directionsResponse) {
-      setDistance(results.routes[0].legs[0].distance.text);
-      setDuration(results.routes[0].legs[0].duration.text);
-    }
+    setDistance(results.routes[0].legs[0].distance.text);
+    setDuration(results.routes[0].legs[0].duration.text);
   }
 
   function getNearRestaurant() {
@@ -183,7 +181,7 @@ export default function Map({
             <p>
               Approximate delivery time:
               {duration ? (
-                <b> {duration} + 45 mins to produce a meal</b>
+                <b> {duration} + 45 mins to process an order</b>
               ) : (
                 <b> Loading failed. Try again</b>
               )}
@@ -244,7 +242,7 @@ function Search({ panTo, setCustAddress, setMyLocation, handleGetAddress }) {
         onSelect={async (address) => {
           try {
             const results = await getGeocode({ address });
-            const { lat, lng } = await getLatLng(results[0]);
+            const { lat, lng } = getLatLng(results[0]);
             panTo({ lat, lng });
             setMyLocation({
               name: "Your location",
