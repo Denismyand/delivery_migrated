@@ -7,32 +7,40 @@ import { AppWrapper } from "../context/state.js";
 import { ThemeProvider } from "@mui/system";
 import { theme, ButtonFooter } from "../components/MuiCustomized.js";
 import { NotificationContainer } from "react-notifications";
+import Link from "next/link";
 
 export default function MyApp({ Component, pageProps }) {
   return (
-      <ThemeProvider theme={theme}>
-        <AppWrapper>
-          <Footer />
-          <Component {...pageProps} />
-          <NotificationContainer />
-        </AppWrapper>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <AppWrapper>
+        <Footer />
+        <Component {...pageProps} />
+        <NotificationContainer />
+      </AppWrapper>
+    </ThemeProvider>
   );
 }
 function Footer() {
   return (
     <div className="Footer">
-      <a href="/">
-        <ButtonFooter>Shop</ButtonFooter>
-      </a>
+      <Link href="/">
+        <a>
+          <ButtonFooter>Shop</ButtonFooter>
+        </a>
+      </Link>
+
       <div className="VerticalLine" />
-      <a href="/cart">
-        <ButtonFooter>Cart</ButtonFooter>
-      </a>
+      <Link href="/cart">
+        <a>
+          <ButtonFooter>Cart</ButtonFooter>
+        </a>
+      </Link>
       <div className="VerticalLine" />
-      <a href="/orders">
-        <ButtonFooter>Orders</ButtonFooter>
-      </a>
+      <Link href="/orders">
+        <a>
+          <ButtonFooter>Orders</ButtonFooter>
+        </a>
+      </Link>
     </div>
   );
 }
