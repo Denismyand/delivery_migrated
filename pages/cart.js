@@ -52,18 +52,12 @@ export default function Cart({ restaurantLocations }) {
     setCustomerId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
 
-  function ifCartIsEmpty() {
-    if (cart.length < 1) {
-      return true;
-    } else return false;
-  }
-
-  const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsEmpty());
+  const [cartIsEmpty, setCartIsEmpty] = useState(true);
+  
 
   useEffect(() => {
-    setCartIsEmpty(ifCartIsEmpty());
+    setCartIsEmpty(cart.length < 1);
   }, [cart]);
-
 
   async function getOrder() {
     let orderTime = new Date();
@@ -123,7 +117,7 @@ export default function Cart({ restaurantLocations }) {
     });
     setCart(changed);
   }
-  
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -178,13 +172,13 @@ export default function Cart({ restaurantLocations }) {
             />
           </div>
           <div className="CartTotalSection">
-            {cartIsEmpty ? null : (
+            {!cartIsEmpty ? (
               <ReCAPTCHA
                 className="Captcha"
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                 onChange={handleCaptchaVerify}
               />
-            )}
+            ) : null}
             <div className="CartTotal">
               <p>Total price: {cartTotal()}</p>
             </div>

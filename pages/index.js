@@ -35,16 +35,10 @@ export default function App({ menu }) {
     setRestaurant(brand);
   }
 
-  function ifCartIsNotEmpty() {
-    if (cart.length < 1) {
-      return false;
-    } else return true;
-  }
-
-  const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsNotEmpty);
+  const [cartIsEmpty, setCartIsEmpty] = useState(true);
 
   useEffect(() => {
-    setCartIsEmpty(!ifCartIsNotEmpty());
+    setCartIsEmpty(cart.length < 1);
   }, [cart]);
 
   return (
