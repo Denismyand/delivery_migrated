@@ -301,7 +301,7 @@ export function InputSearch({ toInput, value, onChange, type }) {
   return (
     <TextField
       sx={{
-        width: "80%",
+        width: "50%",
       }}
       variant="outlined"
       color="inputs"

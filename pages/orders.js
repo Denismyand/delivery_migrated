@@ -25,7 +25,7 @@ export default function Orders({ menu, orderList }) {
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
-  
+
   orderList = orderList
     .filter((order) => order.customer_id === userId)
     .map((order) => {
@@ -106,35 +106,38 @@ function History({ orderList, menu, email, phone, orderId }) {
               Order address: <b>{order.customer_address}</b>
             </p>
             <div key={order.id} className="HistoryOrderInfo">
-              <div className="HistoryOrderItems">
-                {order.order_items.map((orderedItem) => {
-                  return menu.map((dish) => {
-                    if (dish.id === orderedItem.id) {
-                      let itemTotal = Number(dish.cost) * orderedItem.quantity;
-                      return (
-                        <div key={dish.id} className="HistoryDish">
-                          <img
-                            src={dish.image}
-                            width="200px"
-                            height="200px"
-                            alt={dish.product}
-                          ></img>
-                          <div className="HistoryDishInfo">
-                            <span>
-                              <b>{dish.product}</b>
-                            </span>
-                            <br />
-                            <span>
-                              Quantity ordered: {orderedItem.quantity}
-                            </span>
-                            <br />
-                            <span>Price: {itemTotal}₴</span>
+              <div className="OrderItemsAndTotal">
+                <div className="HistoryOrderItems">
+                  {order.order_items.map((orderedItem) => {
+                    return menu.map((dish) => {
+                      if (dish.id === orderedItem.id) {
+                        let itemTotal =
+                          Number(dish.cost) * orderedItem.quantity;
+                        return (
+                          <div key={dish.id} className="HistoryDish">
+                            <img
+                              src={dish.image}
+                              width="200px"
+                              height="200px"
+                              alt={dish.product}
+                            ></img>
+                            <div className="HistoryDishInfo">
+                              <span>
+                                <b>{dish.product}</b>
+                              </span>
+                              <br />
+                              <span>
+                                Quantity ordered: <b>{orderedItem.quantity}</b>
+                              </span>
+                              <br />
+                              <span>Price: {itemTotal}₴</span>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    }
-                  });
-                })}
+                        );
+                      }
+                    });
+                  })}
+                </div>
                 <p className="HistoryOrderTotal">
                   Order total: <b>{order.order_total}₴</b>
                 </p>
