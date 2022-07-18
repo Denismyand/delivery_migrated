@@ -97,11 +97,11 @@ export default function Cart({ restaurantLocations }) {
     if (cart) {
       cart.forEach((dish) => {
         if (promo === "20percent") {
-          total += dish.cost * dish.cartQuantity * 0.8;
+          total += Math.round(dish.cost * dish.cartQuantity * 0.8);
         } else if (promo === "30percent") {
-          total += dish.cost * dish.cartQuantity * 0.7;
+          total += Math.round(dish.cost * dish.cartQuantity * 0.7);
         } else {
-          total += dish.cost * dish.cartQuantity;
+          total += Math.round(dish.cost * dish.cartQuantity);
         }
       });
       return total + "₴";
