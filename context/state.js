@@ -5,7 +5,6 @@ import { NotificationManager } from "react-notifications";
 
 function createNotification(type, dish) {
   switch (type) {
-    
     case "added":
       NotificationManager.success(``, `Added ${dish.product} to cart`);
       break;
@@ -32,7 +31,6 @@ function createNotification(type, dish) {
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-
   const [cached, setCached] = useState(isCart());
 
   function isCart() {
@@ -101,7 +99,7 @@ export function AppWrapper({ children }) {
       localStorage.setItem("UserToken", JSON.stringify(uuidv4()));
     }
   }, []);
-  
+
   let sharedState = {
     cart,
     setCart,

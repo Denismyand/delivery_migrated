@@ -10,13 +10,13 @@ import { NotificationContainer } from "react-notifications";
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <AppWrapper>
-        <Footer />
-        <Component {...pageProps} />
-        <NotificationContainer />
-      </AppWrapper>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <AppWrapper>
+          <Footer />
+          <Component {...pageProps} />
+          <NotificationContainer />
+        </AppWrapper>
+      </ThemeProvider>
   );
 }
 function Footer() {

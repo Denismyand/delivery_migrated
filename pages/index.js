@@ -77,7 +77,7 @@ function Restaurants({
 }) {
   return (
     <div className="RestaurantList">
-      <Stack alignItems="center" spacing="40px" directioStackn="column">
+      <Stack alignItems="center" spacing="40px" direction="column">
         <h2>Shops:</h2>
         <ButtonRestaurant
           disabled={!cartIsEmpty}
