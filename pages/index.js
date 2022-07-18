@@ -89,7 +89,7 @@ function Restaurants({
           disabled={!cartIsEmpty}
           onClick={() => chooseRestaurant(johnsMenu)}
         >
-          <b>Uncle John's</b>
+          <b>Uncle John&#39;s</b>
         </ButtonRestaurant>
         <ButtonRestaurant
           disabled={!cartIsEmpty}
