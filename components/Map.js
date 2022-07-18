@@ -1,3 +1,5 @@
+import { useState, useCallback, useRef, useEffect } from "react";
+import { mapStyles } from "./mapstyles.js";
 import {
   GoogleMap,
   useLoadScript,
@@ -5,8 +7,6 @@ import {
   InfoWindow,
   DirectionsRenderer,
 } from "@react-google-maps/api";
-import { useState, useCallback, useRef, useEffect } from "react";
-import { mapStyles } from "./mapstyles.js";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -22,11 +22,12 @@ import "@reach/combobox/styles.css";
 
 const locator = "/pics/location.svg";
 
+const libraries = ["places"];
+
 const mapContainerStyle = {
   width: "100%",
   height: "300px",
 };
-const libraries = ["places"];
 
 const center = { lat: 50.013615, lng: 36.32684 };
 

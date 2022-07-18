@@ -1,13 +1,14 @@
-import "react-notifications/lib/notifications.css";
+import { useState, useEffect } from "react";
 import { useAppContext } from "../context/state.js";
-import { Stack } from "@mui/material";
 import {
   ButtonRestaurant,
   ButtonMenu,
   ButtonRestaurantClearCart,
 } from "../components/MuiCustomized.js";
-import { useState, useEffect } from "react";
+import { Stack } from "@mui/material";
+import "react-notifications/lib/notifications.css";
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
@@ -22,20 +23,26 @@ export async function getServerSideProps() {
 export default function App({ menu }) {
   const { cart, setCart, handleAddToCart, createNotification } =
     useAppContext();
+
   let mcMenu = menu.filter((dish) => dish.restaurant === "McDonny");
   let cfkMenu = menu.filter((dish) => dish.restaurant === "CFK");
   let johnsMenu = menu.filter((dish) => dish.restaurant === "Uncle John's");
   let sonimodMenu = menu.filter((dish) => dish.restaurant === "Sonimod Pizza");
+
   const [restaurant, setRestaurant] = useState(mcMenu);
+
   function chooseRestaurant(brand) {
     setRestaurant(brand);
   }
+
   function ifCartIsNotEmpty() {
     if (cart.length < 1) {
       return false;
     } else return true;
   }
+
   const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsNotEmpty);
+
   useEffect(() => {
     setCartIsEmpty(!ifCartIsNotEmpty());
   }, [cart]);

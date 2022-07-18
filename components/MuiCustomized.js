@@ -1,5 +1,5 @@
-import { createTheme, styled } from "@mui/material/styles";
 import { Button, TextField } from "@mui/material";
+import { createTheme, styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Capitalize(str) {
@@ -244,7 +244,13 @@ export function ButtonDeleteFromCart({ onClick }) {
   );
 }
 
-export function InputPersonalInfo({ toInput, value, onChange, disabled, type }) {
+export function InputPersonalInfo({
+  toInput,
+  value,
+  onChange,
+  disabled,
+  type,
+}) {
   return (
     <TextField
       sx={{
@@ -303,7 +309,7 @@ export function InputSearch({ toInput, value, onChange, type }) {
       placeholder={`Enter order ${toInput}`}
       value={value}
       onChange={onChange}
-      type = {type}
+      type={type}
     ></TextField>
   );
 }

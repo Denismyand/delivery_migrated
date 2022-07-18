@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import { PrismaClient } from "@prisma/client";
-import { Stack } from "@mui/material";
 import { InputSearch } from "../components/MuiCustomized.js";
+import { Stack } from "@mui/material";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
   const dishes = await prisma.dishes.findMany();
   const orders = await prisma.orders.findMany();
-
   return {
     props: {
       menu: dishes,
@@ -26,6 +25,7 @@ export default function Orders({ menu, orderList }) {
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
+  
   orderList = orderList
     .filter((order) => order.customer_id === userId)
     .map((order) => {

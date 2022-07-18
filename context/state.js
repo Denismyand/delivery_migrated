@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "react-notifications/lib/notifications.css";
 import { NotificationManager } from "react-notifications";
-import { v4 as uuidv4 } from "uuid";
 
 function createNotification(type, dish) {
   switch (type) {
+    
     case "added":
       NotificationManager.success(``, `Added ${dish.product} to cart`);
       break;
@@ -31,20 +32,23 @@ function createNotification(type, dish) {
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  const [cached, setCached] = useState(isParsed());
-  function isParsed() {
+
+  const [cached, setCached] = useState(isCart());
+
+  function isCart() {
     if (typeof window !== "undefined") {
       return JSON.parse(localStorage.getItem("cart"));
     } else return null;
   }
 
-  const [cart, setCart] = useState(isCached());
+  const [cart, setCart] = useState(isCartCached());
 
-  function isCached() {
+  function isCartCached() {
     if (cached) {
       return cached;
     } else return [];
   }
+
   function handleAddToCart(dish) {
     let foundInCart = cart.find((cartItem) => cartItem.id === dish.id);
     if (foundInCart) {
@@ -86,15 +90,18 @@ export function AppWrapper({ children }) {
       createNotification("removed", dish);
     }
   }
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     setCached(JSON.parse(localStorage.getItem("cart")));
   }, [cart]);
+
   useEffect(() => {
     if (!localStorage.getItem("UserToken")) {
       localStorage.setItem("UserToken", JSON.stringify(uuidv4()));
     }
   }, []);
+  
   let sharedState = {
     cart,
     setCart,

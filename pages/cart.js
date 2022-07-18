@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import { Stack } from "@mui/material";
-import { v4 as uuidv4 } from "uuid";
-
+import { useAppContext } from "../context/state.js";
 import Map from "../components/Map.js";
-import ReCAPTCHA from "react-google-recaptcha";
 import {
   ButtonSubmitOrder,
   ButtonArrowUp,
@@ -13,8 +10,10 @@ import {
   ButtonCartClearCart,
   ButtonDeleteFromCart,
 } from "../components/MuiCustomized.js";
-import { useAppContext } from "../context/state.js";
+import { Stack } from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
 import { PrismaClient } from "@prisma/client";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const prisma = new PrismaClient();
 
@@ -48,20 +47,23 @@ export default function Cart({ restaurantLocations }) {
   const [custAddress, setCustAddress] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [customerId, setCustomerId] = useState("");
+
   useEffect(() => {
     setCustomerId(JSON.parse(localStorage.getItem("UserToken")));
   }, []);
+
   function ifCartIsEmpty() {
     if (cart.length < 1) {
       return true;
     } else return false;
   }
-  const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsEmpty);
+
+  const [cartIsEmpty, setCartIsEmpty] = useState(!ifCartIsEmpty());
+
   useEffect(() => {
     setCartIsEmpty(ifCartIsEmpty());
   }, [cart]);
 
-  let total = 0;
 
   async function getOrder() {
     let orderTime = new Date();
@@ -89,9 +91,12 @@ export default function Cart({ restaurantLocations }) {
     setCustPhone("");
     setCustAddress("");
   }
+
   function handleCaptchaVerify() {
     setIsVerified(!isVerified);
   }
+
+  let total = 0;
 
   function cartTotal() {
     if (cart) {
@@ -118,6 +123,7 @@ export default function Cart({ restaurantLocations }) {
     });
     setCart(changed);
   }
+  
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -171,7 +177,6 @@ export default function Cart({ restaurantLocations }) {
               createNotification={createNotification}
             />
           </div>
-
           <div className="CartTotalSection">
             {cartIsEmpty ? null : (
               <ReCAPTCHA
