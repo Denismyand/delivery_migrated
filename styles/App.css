@@ -9,6 +9,7 @@ a {
 }
 
 body {
+  min-width: 804px;
   background-color: #ffffff;
   background-image: url("../public/pics/backgrounds/footer.jpg");
   background-repeat: no-repeat;
@@ -40,4 +41,3 @@ input[type="number"]::-webkit-inner-spin-button {
 .VerticalLine {
   border-left: 2px solid black;
 }
-
