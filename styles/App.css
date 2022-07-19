@@ -14,7 +14,7 @@ a {
 body {
   min-width: 804px;
   background-color: #ffffff;
-  background-image: url("../public/pics/backgrounds/footer.jpg");
+  background-image: url(https://res.cloudinary.com/nvmate/image/upload/v1658255032/delivery/header_nmrqip.jpg);
   background-repeat: no-repeat;
   background-size: 100% 60px;
 }

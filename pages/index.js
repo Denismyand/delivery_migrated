@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAppContext } from "../context/state.js";
 import {
   ButtonRestaurant,
@@ -8,6 +8,7 @@ import {
 import { Stack } from "@mui/material";
 import "react-notifications/lib/notifications.css";
 import { PrismaClient } from "@prisma/client";
+import Head from "next/head";
 
 const prisma = new PrismaClient();
 
@@ -35,16 +36,21 @@ export default function App({ menu }) {
   );
 
   return (
-    <div className="ShopContent">
-      <Restaurants
-        setRestaurantName={setRestaurantName}
-        restaurants={restaurants}
-        setCart={setCart}
-        createNotification={createNotification}
-        cartIsEmpty={cartIsEmpty}
-      />
-      <Menu filteredMenu={filteredMenu} handleAddToCart={handleAddToCart} />
-    </div>
+    <>
+      <Head>
+        <title>Shop</title>
+      </Head>
+      <div className="ShopContent">
+        <Restaurants
+          setRestaurantName={setRestaurantName}
+          restaurants={restaurants}
+          setCart={setCart}
+          createNotification={createNotification}
+          cartIsEmpty={cartIsEmpty}
+        />
+        <Menu filteredMenu={filteredMenu} handleAddToCart={handleAddToCart} />
+      </div>
+    </>
   );
 }
 

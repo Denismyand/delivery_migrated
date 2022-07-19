@@ -16,6 +16,7 @@ import { Stack } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import { PrismaClient } from "@prisma/client";
 import ReCAPTCHA from "react-google-recaptcha";
+import Head from "next/head";
 
 const prisma = new PrismaClient();
 
@@ -126,6 +127,9 @@ export default function Cart({ restaurantLocations }) {
 
   return (
     <>
+      <Head>
+        <title>Cart</title>
+      </Head>
       <div className="CartContent">
         <Stack
           className="PersonalInfo"

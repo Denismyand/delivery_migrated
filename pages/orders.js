@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { InputSearch } from "../components/MuiCustomized.js";
 import { Stack } from "@mui/material";
 import { PrismaClient } from "@prisma/client";
+import Head from "next/head";
 
 const prisma = new PrismaClient();
 
@@ -33,43 +34,49 @@ export default function Orders({ menu, orderList }) {
     });
 
   return (
-    <div className="HistoryContent">
-      <Stack
-        className="SearchSection"
-        alignItems="center"
-        spacing="30px"
-        direction="column"
-      >
-        <InputSearch
-          toInput="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
+    <>
+      <Head>
+        <title>Orders</title>
+      </Head>
+
+      <div className="HistoryContent">
+        <Stack
+          className="SearchSection"
+          alignItems="center"
+          spacing="30px"
+          direction="column"
+        >
+          <InputSearch
+            toInput="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+          />
+          <InputSearch
+            toInput="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            type="number"
+          />
+          <InputSearch
+            toInput="order Id"
+            value={orderId}
+            onChange={(e) => setOrderId(e.target.value)}
+          />
+        </Stack>
+        <OrderHistory
+          orderList={orderList}
+          menu={menu}
+          email={email}
+          phone={phone}
+          orderId={orderId}
         />
-        <InputSearch
-          toInput="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          type="number"
-        />
-        <InputSearch
-          toInput="order Id"
-          value={orderId}
-          onChange={(e) => setOrderId(e.target.value)}
-        />
-      </Stack>
-      <History
-        orderList={orderList}
-        menu={menu}
-        email={email}
-        phone={phone}
-        orderId={orderId}
-      />
-    </div>
+      </div>
+    </>
   );
 }
 
-function History({ orderList, menu, email, phone, orderId }) {
+function OrderHistory({ orderList, menu, email, phone, orderId }) {
   return (
     <div className="HistoryList">
       {orderList.map((order) => {

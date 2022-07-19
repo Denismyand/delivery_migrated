@@ -20,7 +20,8 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
-const locator = "/pics/location.svg";
+const locator =
+  "https://res.cloudinary.com/nvmate/image/upload/v1658255319/delivery/location_kyhi74.svg";
 
 const libraries = ["places"];
 
