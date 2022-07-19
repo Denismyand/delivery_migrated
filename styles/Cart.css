@@ -12,9 +12,8 @@
   padding-bottom: 50px;
   width: 770px;
   height: 850px;
-  border: 1px solid black;
   border-radius: 5px;
-  box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .Map {
   width: 600px;
@@ -35,11 +34,9 @@
 .Search:focus {
   outline: none;
   padding-left: 9px;
-  border: 2px solid #455a64;
 }
 .Search:hover {
   padding-left: 9px;
-  border: 2px solid #455a64;
 }
 .SearchSuggestion {
   width: 480px;
@@ -87,10 +84,9 @@
   width: 855px;
   gap: 15px;
   height: 650px;
-  border: 1px solid black;
   border-radius: 5px;
   overflow: auto;
-  box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .EmptyCart {
   text-align: center;
@@ -103,9 +99,8 @@
   height: 330px;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
   border-radius: 5px;
-  box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .CartPic {
   width: 315px;

@@ -12,18 +12,18 @@ img {
   margin-top: 30px;
   padding-bottom: 30px;
   height: 850px;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .SearchSection {
   width: 95%;
   height: 330px;
   padding-top: 30px;
   margin-top: 30px;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .HistoryList {
   padding: 20px;
@@ -36,9 +36,9 @@ img {
   width: 95%;
   height: 470px;
   overflow: auto;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .HistoryOrder {
   padding: 20px;
@@ -48,9 +48,9 @@ img {
   align-items: left;
   gap: 20px;
   font-size: 20px;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
@@ -61,9 +61,9 @@ img {
 .OrderItemsAndTotal {
   display: flex;
   width: 99%;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .HistoryOrderItems {
   display: flex;
@@ -77,9 +77,9 @@ img {
   display: flex;
   padding: 20px;
   width: 500px;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .HistoryDishInfo {
   padding-left: 50px;

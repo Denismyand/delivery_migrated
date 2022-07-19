@@ -7,9 +7,9 @@ textarea {
   height: 50px;
   line-height: 45px;
   font-size: 20px;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .CouponsContent {
@@ -17,9 +17,9 @@ textarea {
   height: 900px;
   margin: 1%;
   padding: 1%;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 .CouponsList {
@@ -35,9 +35,9 @@ textarea {
   position: relative;
   width: 450px;
   height: 350px;
-  border: 2px solid #455a64;
+
   border-radius: 10px;
-  box-shadow: 0 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .CouponImg {
   border: 0;
