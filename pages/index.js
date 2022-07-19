@@ -26,13 +26,13 @@ export default function App({ menu }) {
 
   const restaurants = ["McDonny", "CFK", "Uncle John's", "Sonimod Pizza"];
 
+  const cartIsEmpty = cart.length < 1;
+
   const [restaurantName, setRestaurantName] = useState("McDonny");
 
   const filteredMenu = menu.filter(
     (dish) => dish.restaurant === restaurantName
   );
-
-  const cartIsEmpty = cart.length < 1;
 
   return (
     <div className="ShopContent">
@@ -62,6 +62,7 @@ function Restaurants({
         {restaurants.map((rest) => {
           return (
             <ButtonRestaurant
+              key={rest}
               disabled={!cartIsEmpty}
               onClick={() => setRestaurantName(rest)}
             >
