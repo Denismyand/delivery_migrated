@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { useAppContext } from "../context/state.js";
 import Map from "../components/Map.js";
 import {
@@ -123,10 +124,6 @@ export default function Cart({ restaurantLocations }) {
     setCart(changed);
   }
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
   return (
     <>
       <div className="CartContent">
@@ -195,7 +192,6 @@ export default function Cart({ restaurantLocations }) {
             <ButtonCartClearCart
               disabled={cartIsEmpty}
               onClick={() => {
-                getOrder();
                 setCart([]);
                 createNotification("cleared");
               }}

@@ -48,7 +48,7 @@ export const quantityInput = createTheme({
   },
 });
 
-export function ButtonFooter({ children }) {
+export function ButtonHeader({ children }) {
   return (
     <Button
       sx={{

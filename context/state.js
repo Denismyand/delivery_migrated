@@ -34,32 +34,26 @@ function createNotification(type, dish) {
 }
 const AppContext = createContext();
 
-export function AppWrapper({ children }) {
-  const [cached, setCached] = useState(isCart());
+const maxCartQuantity = 13;
 
-  function isCart() {
+export function AppWrapper({ children }) {
+  function getCart() {
     if (typeof window !== "undefined") {
       return JSON.parse(localStorage.getItem("cart"));
-    } else return null;
-  }
-
-  const [cart, setCart] = useState(isCartCached());
-
-  function isCartCached() {
-    if (cached) {
-      return cached;
     } else return [];
   }
+
+  const [cart, setCart] = useState(getCart());
 
   function handleAddToCart(dish) {
     let foundInCart = cart.find((cartItem) => cartItem.id === dish.id);
     if (foundInCart) {
       let nextCart = cart.map((food) => {
         if (food.id === foundInCart.id) {
-          if (foundInCart.cartQuantity >= 13) {
+          if (foundInCart.cartQuantity >= maxCartQuantity) {
             return {
               ...foundInCart,
-              cartQuantity: Number(13),
+              cartQuantity: Number(maxCartQuantity),
             };
           } else {
             return {
@@ -95,7 +89,6 @@ export function AppWrapper({ children }) {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    setCached(JSON.parse(localStorage.getItem("cart")));
   }, [cart]);
 
   useEffect(() => {

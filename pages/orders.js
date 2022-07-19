@@ -116,6 +116,7 @@ function History({ orderList, menu, email, phone, orderId }) {
                         return (
                           <div key={dish.id} className="HistoryDish">
                             <img
+                              className="img"
                               src={dish.image}
                               width="200px"
                               height="200px"

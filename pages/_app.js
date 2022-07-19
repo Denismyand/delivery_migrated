@@ -1,13 +1,12 @@
 import "../styles/App.css";
 import "../styles/Shop.css";
 import "../styles/Cart.css";
-import "../styles/Orders.css";
 import "../styles/Coupons.css";
-
+import "../styles/Orders.css";
 
 import { AppWrapper } from "../context/state.js";
 import { ThemeProvider } from "@mui/system";
-import { theme, ButtonFooter } from "../components/MuiCustomized.js";
+import { theme, ButtonHeader } from "../components/MuiCustomized.js";
 import { NotificationContainer } from "react-notifications";
 import Link from "next/link";
 
@@ -15,37 +14,37 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <Footer />
+        <Header />
         <Component {...pageProps} />
         <NotificationContainer />
       </AppWrapper>
     </ThemeProvider>
   );
 }
-function Footer() {
+function Header() {
   return (
-    <div className="Footer">
+    <div className="Header">
       <Link href="/">
         <a>
-          <ButtonFooter>Shop</ButtonFooter>
+          <ButtonHeader>Shop</ButtonHeader>
         </a>
       </Link>
       <div className="VerticalLine" />
       <Link href="/cart">
         <a>
-          <ButtonFooter>Cart</ButtonFooter>
+          <ButtonHeader>Cart</ButtonHeader>
         </a>
       </Link>
       <div className="VerticalLine" />
       <Link href="/orders">
         <a>
-          <ButtonFooter>Orders</ButtonFooter>
+          <ButtonHeader>Orders</ButtonHeader>
         </a>
       </Link>
       <div className="VerticalLine" />
       <Link href="/coupons">
         <a>
-          <ButtonFooter>Coupons</ButtonFooter>
+          <ButtonHeader>Coupons</ButtonHeader>
         </a>
       </Link>
     </div>
