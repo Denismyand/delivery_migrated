@@ -24,47 +24,33 @@ export default function App({ menu }) {
   const { cart, setCart, handleAddToCart, createNotification } =
     useAppContext();
 
-  let mcMenu = menu.filter((dish) => dish.restaurant === "McDonny");
-  let cfkMenu = menu.filter((dish) => dish.restaurant === "CFK");
-  let johnsMenu = menu.filter((dish) => dish.restaurant === "Uncle John's");
-  let sonimodMenu = menu.filter((dish) => dish.restaurant === "Sonimod Pizza");
+  const restaurants = ["McDonny", "CFK", "Uncle John's", "Sonimod Pizza"];
 
-  const [restaurant, setRestaurant] = useState(mcMenu);
+  const [restaurantName, setRestaurantName] = useState("McDonny");
 
-  function chooseRestaurant(brand) {
-    setRestaurant(brand);
-  }
+  const filteredMenu = menu.filter(
+    (dish) => dish.restaurant === restaurantName
+  );
 
-  const [cartIsEmpty, setCartIsEmpty] = useState(true);
-
-  useEffect(() => {
-    setCartIsEmpty(cart.length < 1);
-  }, [cart]);
+  const cartIsEmpty = cart.length < 1;
 
   return (
     <div className="ShopContent">
       <Restaurants
-        chooseRestaurant={chooseRestaurant}
-        mcMenu={mcMenu}
-        cfkMenu={cfkMenu}
-        johnsMenu={johnsMenu}
-        sonimodMenu={sonimodMenu}
-        cart={cart}
+        setRestaurantName={setRestaurantName}
+        restaurants={restaurants}
         setCart={setCart}
         createNotification={createNotification}
         cartIsEmpty={cartIsEmpty}
       />
-      <Menu restaurant={restaurant} handleAddToCart={handleAddToCart} />
+      <Menu filteredMenu={filteredMenu} handleAddToCart={handleAddToCart} />
     </div>
   );
 }
 
 function Restaurants({
-  chooseRestaurant,
-  mcMenu,
-  cfkMenu,
-  johnsMenu,
-  sonimodMenu,
+  setRestaurantName,
+  restaurants,
   cartIsEmpty,
   setCart,
   createNotification,
@@ -73,30 +59,16 @@ function Restaurants({
     <div className="RestaurantList">
       <Stack alignItems="center" spacing="40px" direction="column">
         <h2>Shops:</h2>
-        <ButtonRestaurant
-          disabled={!cartIsEmpty}
-          onClick={() => chooseRestaurant(mcMenu)}
-        >
-          <b>McDonny</b>
-        </ButtonRestaurant>
-        <ButtonRestaurant
-          disabled={!cartIsEmpty}
-          onClick={() => chooseRestaurant(cfkMenu)}
-        >
-          <b>CFK</b>
-        </ButtonRestaurant>
-        <ButtonRestaurant
-          disabled={!cartIsEmpty}
-          onClick={() => chooseRestaurant(johnsMenu)}
-        >
-          <b>Uncle John&#39;s</b>
-        </ButtonRestaurant>
-        <ButtonRestaurant
-          disabled={!cartIsEmpty}
-          onClick={() => chooseRestaurant(sonimodMenu)}
-        >
-          <b>Sonimod Pizza</b>
-        </ButtonRestaurant>
+        {restaurants.map((rest) => {
+          return (
+            <ButtonRestaurant
+              disabled={!cartIsEmpty}
+              onClick={() => setRestaurantName(rest)}
+            >
+              {rest}
+            </ButtonRestaurant>
+          );
+        })}
         <ButtonRestaurantClearCart
           disabled={cartIsEmpty}
           onClick={() => {
@@ -111,11 +83,11 @@ function Restaurants({
   );
 }
 
-function Menu({ restaurant, handleAddToCart }) {
+function Menu({ filteredMenu, handleAddToCart }) {
   return (
     <>
       <div className="MenuContent">
-        {restaurant.map((dish) => (
+        {filteredMenu.map((dish) => (
           <div className="Dish" key={dish.id}>
             <img
               className="MenuDishImage"
