@@ -13,7 +13,7 @@ function createNotification(type, dish) {
       NotificationManager.error(
         "",
         `Removed ${dish.product} from cart`,
-        5000,
+        3000,
         () => {
           alert("callback");
         }
@@ -21,11 +21,11 @@ function createNotification(type, dish) {
       break;
 
     case "ordered":
-      NotificationManager.success(``, `Order Placed!`);
+      NotificationManager.success(``, `Order Placed!`, 3000);
       break;
 
     case "cleared":
-      NotificationManager.success(``, "Cart cleared");
+      NotificationManager.success(``, "Cart cleared", 1000);
       break;
 
     case "copied":
@@ -37,13 +37,17 @@ const AppContext = createContext();
 const maxCartQuantity = 13;
 
 export function AppWrapper({ children }) {
+  const [cart, setCart] = useState([]);
+
   function getCart() {
     if (typeof window !== "undefined") {
       return JSON.parse(localStorage.getItem("cart"));
     } else return [];
   }
 
-  const [cart, setCart] = useState(getCart());
+  useEffect(() => {
+    getCart();
+  }, [cart]);
 
   function handleAddToCart(dish) {
     let foundInCart = cart.find((cartItem) => cartItem.id === dish.id);
