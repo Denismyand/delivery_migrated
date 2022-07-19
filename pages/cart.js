@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { useAppContext } from "../context/state.js";
 import Map from "../components/Map.js";
@@ -48,11 +48,11 @@ export default function Cart({ restaurantLocations }) {
   const [custPhone, setCustPhone] = useState("");
   const [custAddress, setCustAddress] = useState("");
   const [isVerified, setIsVerified] = useState(false);
-  const [customerId, setCustomerId] = useState("");
+  const customerId = useRef(null);
   const [promo, setPromo] = useState("");
 
   useEffect(() => {
-    setCustomerId(JSON.parse(localStorage.getItem("UserToken")));
+    customerId.current = JSON.parse(localStorage.getItem("UserToken"));
   }, []);
 
   const [cartIsEmpty, setCartIsEmpty] = useState(true);
@@ -76,7 +76,7 @@ export default function Cart({ restaurantLocations }) {
         custEmail,
         custPhone,
         custAddress,
-        customerId,
+        customerId: customerId.current,
         orderItems,
         orderTime,
         orderTotal: total,
