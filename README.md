@@ -1,3 +1,5 @@
+https://delivery-migrated.vercel.app/
+
 User guide:
 
 Main page (Shop):
